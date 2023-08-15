@@ -19,4 +19,5 @@ public class DatabaseController {
         flyway.repair();
         return ResponseEntity.ok("Database repair attempted.");
     }
+
 }
