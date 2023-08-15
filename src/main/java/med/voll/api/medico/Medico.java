@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.api.endereco.Endereco;
 
+import static med.voll.api.extensions.StringExtensions.atualizarSeNaoNulo;
+
 @Table(name = "medicos")
 @Entity(name = "Medico")
 
@@ -35,4 +37,11 @@ public class Medico {
         this.endereco = new Endereco(dados.endereco());
         this.especialidade = dados.especialidade();
     }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+        this.nome = atualizarSeNaoNulo(this.nome, dados::nome);
+        this.telefone = atualizarSeNaoNulo(this.telefone, dados::telefone);
+        this.endereco.atualizarInformacoes(dados.endereco());
+    }
+
 }
